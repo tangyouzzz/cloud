@@ -1,0 +1,63 @@
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">    
+    <title>login</title>        
+    <link href="https://cdn.bootcss.com/element-ui/2.8.2/theme-chalk/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/2.8.2/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/static/home.css">
+</head>
+<body>    
+    <div id="login">
+        <h3 id="login" v-if="isLogin==true"><span v-text="username"></span> <a @click="logout">注销</a></h3>
+        <h3 id="login" v-else><a @click="login1">登录</a></h3>
+
+        <div id="login-box" :style="log==0?'display:none':'display:block;zIndex:1'">
+            <label>用&nbsp;&nbsp;&nbsp;&nbsp;户:
+                <input type="text" v-model="email">
+            </label>
+            <label>密&nbsp;&nbsp;&nbsp;&nbsp;码:
+                <input type="text" v-model="password">
+            </label>
+            <input id="denglu" type="button" value="denglu" @click="login2" @keyup.enter="login2">
+            <p id="close" @click="close">×</p>
+        </div>
+
+    </div>
+
+    <div id="file">
+        <input id="shuaxin" type="button" value="shuaxin" @click="list">
+        <template>
+            <el-table :data="tableData" style="width: 100%" >
+                <el-table-column prop="name" label="文件名" width="180">
+                </el-table-column>
+                <el-table-column prop="size" label="文件大小" width="180">
+                </el-table-column>
+                <el-table-column prop="path" label="地址">
+                </el-table-column>
+                <el-table-column prop="username" label="用户名">
+                </el-table-column>
+                <el-table-column prop="uploaddate" label="上传时间">
+                </el-table-column>
+                <el-table-column label="操作">
+                    <template slot-scope="scope">
+                        <el-button type="text" @click="download(scope.row)">下载</el-button>
+                        <el-button type="text" @click="filedelete(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </template>
+
+        <input type="file" name="file" />
+        <input type="button" value="shangchuan" @click="upload">
+        
+    </div>
+    <!-- yinru javascript -->
+    <script type="text/javascript" src="/static/home.js"></script>
+
+</body>
+
+
+
+</html>
